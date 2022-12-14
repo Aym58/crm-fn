@@ -1,4 +1,6 @@
-export const MAX_WIDTH = '1200px';
+export const MAX_WIDTH = '640px';
+
+export const HEADER_HEIGHT = '80px';
 
 export const Spacing = (x: number): string => `${x * 4}px`;
 

@@ -1,18 +1,21 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import {
-  FontSizeEnum,
-  FontSizeData,
-  FontSizeType,
-  FontWeightEnum,
-  FontWeightData,
-  FontWeightType,
-  MEDIA_BREAKPOINT,
-  Spacing,
-} from 'theme/size';
+import { Inter } from '@next/font/google';
 
-import { ColorEnum, ColorData, ColorType } from 'theme';
+import {
+  ColorData,
+  ColorEnum,
+  ColorType,
+  FontSizeData,
+  FontSizeEnum,
+  FontSizeType,
+  FontWeightData,
+  FontWeightEnum,
+  FontWeightType,
+} from 'src/theme';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const Elem: React.FC<{
   tid?: string;
@@ -20,6 +23,7 @@ export const Elem: React.FC<{
   color?: ColorType;
   type?: FontWeightType;
   size?: FontSizeType;
+  spacing?: string;
   children?: ReactNode;
   lineHeight?: boolean;
   underline?: boolean;
@@ -31,6 +35,7 @@ export const Elem: React.FC<{
   color,
   type,
   size,
+  spacing,
   lineHeight,
   underline,
   className,
@@ -40,10 +45,12 @@ export const Elem: React.FC<{
     <Text
       color={color}
       size={size}
+      spacing={spacing}
       type={type}
       lineHeight={lineHeight}
       underline={underline}
       className={className}
+      oneLine={oneLine}
     >
       {children}
     </Text>
@@ -52,33 +59,25 @@ export const Elem: React.FC<{
 
 const Text = styled.span<{
   size?: FontSizeType;
+  spacing?: string;
   color?: ColorType;
   type?: FontWeightType;
   lineHeight?: boolean;
   underline?: boolean;
   oneLine?: boolean;
 }>`
-  margin: 0;
-  font-family: 'PT Root UI';
+  font-family: ${inter.style.fontFamily};
 
   ${({
-    size = FontSizeEnum.DEFAULT,
-    color = ColorEnum.DEFAULT,
+    size = FontSizeEnum.REGULAR,
+    color = ColorEnum.TEXT,
     type = FontWeightEnum.REGULAR,
     lineHeight = false,
     underline = false,
     oneLine = false,
+    spacing,
   }) => css`
-    @media (min-width: ${MEDIA_BREAKPOINT}) {
-      font-size: ${(size === FontSizeEnum.DEFAULT && Spacing(4.5)) ||
-      (size === FontSizeEnum.HEADER && Spacing(9)) ||
-      (size === FontSizeEnum.HEADER_SECONDARY && Spacing(5)) ||
-      (size === FontSizeEnum.BOOK && FontSizeData[FontSizeEnum.BOOK]) ||
-      (size === FontSizeEnum.HEADER_TOP && Spacing(14))};
-    }
-    @media (max-width: ${MEDIA_BREAKPOINT}) {
-      font-size: ${FontSizeData[size]};
-    }
+    font-size: ${spacing || FontSizeData[size]};
     font-weight: ${FontWeightData[type]};
     color: ${ColorData[color]};
     text-decoration: ${underline ? 'underline' : 'none'};

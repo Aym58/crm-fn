@@ -3,7 +3,7 @@ export enum ColorEnum {
   TEXT = 'text',
   RED = 'red',
   YELLOW = 'yellow',
-  GREEN = 'green-secondary',
+  GREEN = 'green',
 }
 
 export type ColorType = `${ColorEnum}`;

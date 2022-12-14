@@ -13,3 +13,5 @@ export {
 } from './size';
 
 export { ColorEnum, ColorData, type ColorType } from './color';
+
+export { theme } from './mui';

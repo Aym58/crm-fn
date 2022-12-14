@@ -17,12 +17,10 @@ export const Elem: React.FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 const Container = styled.div`
-  position: fixed;
-  top: 0;
+  position: relative;
   width: 100%;
-  z-index: 100;
-  height: ${HEADER_HEIGHT};
-  border-bottom: 3px solid ${ColorData[ColorEnum.TEXT]};
+  z-index: 1;
+  margin-top: ${HEADER_HEIGHT};
   background-color: ${ColorData[ColorEnum.BACKGROUND]};
 `;
 

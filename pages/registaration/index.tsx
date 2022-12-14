@@ -8,7 +8,7 @@ export default function Home() {
       <Header menu />
       <LayoutPage>
         <TextElement size="header" type="regular">
-          Home page
+          Registration
         </TextElement>
       </LayoutPage>
     </>
