@@ -1,9 +1,8 @@
 import React, { ReactNode } from 'react';
-import styled, { css } from 'styled-components';
-import { TextField } from '@mui/material';
-import { InputBase, InputLabel } from '@mui/material';
 
-import { Inter } from '@next/font/google';
+import styled, { css } from 'styled-components';
+
+import { Select } from '@mui/material';
 
 import {
   ColorData,
@@ -24,23 +23,21 @@ import {
 import { InputEnum, SizeEnum, InputType } from './constant';
 
 import { Grid } from '../grid';
-
-const inter = Inter({ subsets: ['latin'] });
+import { TextElement } from '../text';
 
 export const Elem: React.FC<{
   type?: InputType;
   label?: string;
   name?: string;
-
   children?: ReactNode;
   value?: string;
   textSize?: FontSizeType | string;
   disabled?: boolean;
   onChange?: Function;
 }> = ({
+  children,
   name,
   label,
-  type = InputEnum.TEXT,
   value,
   textSize = Spacing(4.5),
   onChange,
@@ -50,26 +47,19 @@ export const Elem: React.FC<{
     if (onChange) onChange(e);
   };
   return (
-    <Grid size="element">
-      {label && (
-        <Label shrink htmlFor={name}>
-          {label}
-        </Label>
-      )}
-      <Field
-        fullWidth
-        name={name}
-        type={type}
-        onClick={handleClick}
-        textsize={textSize}
-        disabled={disabled}
-        value={value}
-      />
-    </Grid>
+    <Field
+      name={name}
+      onClick={handleClick}
+      textsize={textSize}
+      disabled={disabled}
+      value={value}
+    >
+      {children}
+    </Field>
   );
 };
 
-const Field = styled(InputBase)<{
+const Field = styled(Select)<{
   color?: ColorType;
   textsize?: FontSizeType | string;
 }>`
@@ -93,18 +83,4 @@ const Field = styled(InputBase)<{
     color: ${ColorData[color]};
     font-size: ${textsize};
   `}
-`;
-
-const Label = styled(InputLabel)<{
-  color?: ColorType;
-  textsize?: FontSizeType;
-}>`
-  font-weight: ${FontWeightData[FontWeightEnum.SEMI_BOLD]};
-  transform: none;
-  line-height: 1.1;
-
-  ${({ color = ColorEnum.TEXT, textsize = FontSizeEnum.SUB_HEADER }) => css`
-    color: ${ColorData[color]};
-    font-size: ${FontSizeData[textsize]};
-  `};
 `;

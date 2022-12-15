@@ -29,9 +29,10 @@ const Grid = styled.div<{
   display: grid;
   align-items: start;
   justify-items: start;
+
   ${({ size = PaddingSizeEnum.BLOCK, noStretch = false, spacing }) => css`
     width: ${noStretch ? 'auto' : '100%'};
-    grid-auto-flow: 'row';
+
     grid-gap: ${spacing ? Spacing(spacing) : PaddingSizeData[size]};
   `}
 `;
