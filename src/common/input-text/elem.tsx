@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { BaseSyntheticEvent, ReactNode } from 'react';
 
 import styled, { css } from 'styled-components';
-import { InputBase, InputLabel } from '@mui/material';
+import { InputBase } from '@mui/material';
 
 import {
   ColorData,
@@ -15,8 +15,6 @@ import {
   FontWeightType,
   PaddingSizeData,
   PaddingSizeEnum,
-  PaddingSizeType,
-  Spacing,
 } from 'src/theme';
 
 import { InputEnum, SizeEnum, InputType } from './constant';
@@ -26,27 +24,31 @@ export const Elem: React.FC<{
   name?: string;
   children?: ReactNode;
   value?: string;
-  textSize?: FontSizeType | string;
+  textSize?: FontSizeType;
+  fontWeight?: FontWeightType;
   disabled?: boolean;
   onChange?: Function;
 }> = ({
   name,
   type = InputEnum.TEXT,
   value,
-  textSize = Spacing(4.5),
+  textSize,
+  fontWeight,
   onChange,
   disabled = false,
 }) => {
-  const handleClick = (e: any) => {
+  const handleChange = (e: BaseSyntheticEvent) => {
     if (onChange) onChange(e);
   };
+
   return (
     <Field
       fullWidth
       name={name}
       type={type}
-      onClick={handleClick}
+      onChange={handleChange}
       textsize={textSize}
+      fontWeight={fontWeight}
       disabled={disabled}
       value={value}
     />
@@ -55,7 +57,8 @@ export const Elem: React.FC<{
 
 const Field = styled(InputBase)<{
   color?: ColorType;
-  textsize?: FontSizeType | string;
+  textsize?: FontSizeType;
+  fontWeight?: FontWeightType;
 }>`
   height: ${SizeEnum.HEIGHT};
   width: ${SizeEnum.WIDTH};
@@ -73,8 +76,13 @@ const Field = styled(InputBase)<{
     border: 2px solid ${ColorData[ColorEnum.TEXT]};
   }
 
-  ${({ color = ColorEnum.TEXT, textsize = Spacing(4.5) }) => css`
+  ${({
+    color = ColorEnum.TEXT,
+    textsize = FontSizeEnum.FORM,
+    fontWeight = FontWeightEnum.MEDIUM,
+  }) => css`
     color: ${ColorData[color]};
-    font-size: ${textsize};
+    font-size: ${FontSizeData[textsize]};
+    font-weight: ${FontWeightData[fontWeight]};
   `}
 `;

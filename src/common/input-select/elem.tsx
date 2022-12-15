@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
+import React, { BaseSyntheticEvent, ReactNode } from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { Select } from '@mui/material';
+import { Select, SelectChangeEvent } from '@mui/material';
 
 import {
   ColorData,
@@ -17,70 +17,40 @@ import {
   PaddingSizeData,
   PaddingSizeEnum,
   PaddingSizeType,
-  Spacing,
 } from 'src/theme';
 
 import { InputEnum, SizeEnum, InputType } from './constant';
 
-import { Grid } from '../grid';
-import { TextElement } from '../text';
-
-export const Elem: React.FC<{
-  type?: InputType;
-  label?: string;
-  name?: string;
-  children?: ReactNode;
-  value?: string;
-  textSize?: FontSizeType | string;
-  disabled?: boolean;
+export const Field = styled(Select)<{
   onChange?: Function;
-}> = ({
-  children,
-  name,
-  label,
-  value,
-  textSize = Spacing(4.5),
-  onChange,
-  disabled = false,
-}) => {
-  const handleClick = (e: any) => {
-    if (onChange) onChange(e);
-  };
-  return (
-    <Field
-      name={name}
-      onClick={handleClick}
-      textsize={textSize}
-      disabled={disabled}
-      value={value}
-    >
-      {children}
-    </Field>
-  );
-};
-
-const Field = styled(Select)<{
   color?: ColorType;
-  textsize?: FontSizeType | string;
+  textsize?: FontSizeType;
+  fontWeight?: FontWeightType;
 }>`
   height: ${SizeEnum.HEIGHT};
   width: ${SizeEnum.WIDTH};
 
-  input {
-    box-sizing: border-box;
-    line-height: 1.1;
+  padding: ${PaddingSizeData[PaddingSizeEnum.ELEMENT]};
+
+  fieldset {
+    margin: 0;
+    padding: 0;
     width: 100%;
-    height: 100%;
-    padding: ${PaddingSizeData[PaddingSizeEnum.ELEMENT]};
+    height: auto;
     border: 1px solid ${ColorData[ColorEnum.TEXT]};
   }
 
-  input:focus {
+  fieldset:focus {
     border: 2px solid ${ColorData[ColorEnum.TEXT]};
   }
 
-  ${({ color = ColorEnum.TEXT, textsize = Spacing(4.5) }) => css`
+  ${({
+    color = ColorEnum.TEXT,
+    textsize = FontSizeEnum.FORM,
+    fontWeight = FontWeightEnum.MEDIUM,
+  }) => css`
     color: ${ColorData[color]};
-    font-size: ${textsize};
+    font-size: ${FontSizeData[textsize]};
+    font-weight: ${FontWeightData[fontWeight]};
   `}
 `;

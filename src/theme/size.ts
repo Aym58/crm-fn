@@ -8,6 +8,7 @@ export enum FontSizeEnum {
   HEADER = 'header',
   SUB_HEADER = 'sub-header',
   REGULAR = 'regular',
+  FORM = 'form',
 }
 
 export type FontSizeType = `${FontSizeEnum}`;
@@ -16,6 +17,7 @@ export const FontSizeData = {
   [FontSizeEnum.HEADER]: '22px',
   [FontSizeEnum.SUB_HEADER]: '14px',
   [FontSizeEnum.REGULAR]: '12px',
+  [FontSizeEnum.FORM]: '18px',
 };
 
 export enum PaddingSizeEnum {

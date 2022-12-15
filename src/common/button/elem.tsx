@@ -4,7 +4,12 @@ import styled, { css } from 'styled-components';
 import { ButtonBase } from '@mui/material';
 
 import { TextElement } from '../text';
-import { FontSizeType, Spacing } from 'src/theme';
+import {
+  FontSizeEnum,
+  FontSizeType,
+  FontWeightEnum,
+  FontWeightType,
+} from 'src/theme';
 import { ColorEnum, ColorData, ColorType } from 'src/theme';
 import { ButtonSize } from './constant';
 
@@ -13,13 +18,15 @@ export const Elem: React.FC<{
   text?: string;
   textColor?: ColorType;
   textSize?: FontSizeType;
+  fontWeight?: FontWeightType;
   disabled?: boolean;
   onClick?: Function;
   backgroundColor?: ColorType;
 }> = ({
   text,
   textColor = ColorEnum.TEXT,
-  textSize = Spacing(4.5),
+  textSize = FontSizeEnum.FORM,
+  fontWeight = FontWeightEnum.BOLD,
   onClick,
   backgroundColor,
   disabled = false,
@@ -33,7 +40,7 @@ export const Elem: React.FC<{
       background={backgroundColor}
       disabled={disabled}
     >
-      <TextElement color={textColor} spacing={textSize} type="bold">
+      <TextElement color={textColor} size={textSize} type={fontWeight}>
         {text}
       </TextElement>
     </Container>

@@ -1,1 +1,1 @@
-export { Elem as InputSelectOption } from './elem';
+export { Option as InputSelectOption } from './elem';

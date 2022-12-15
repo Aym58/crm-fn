@@ -27,7 +27,43 @@ export const theme = createTheme({
     },
   },
   shape: { borderRadius: 0 },
+
   typography: {
     fontFamily: inter.style.fontFamily,
+  },
+
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          padding: '0',
+        },
+      },
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          padding: '0',
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          padding: '0',
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          boxShadow: 'none',
+          padding: '0',
+        },
+      },
+    },
   },
 });

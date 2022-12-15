@@ -8,6 +8,7 @@ export const Elem: React.FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 const Container = styled.div`
+  position: absolute;
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
