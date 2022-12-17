@@ -22,6 +22,7 @@ import { InputEnum, SizeEnum, InputType } from './constant';
 export const Elem: React.FC<{
   type?: InputType;
   name?: string;
+  error?: boolean;
   children?: ReactNode;
   value?: string;
   textSize?: FontSizeType;
@@ -31,19 +32,21 @@ export const Elem: React.FC<{
 }> = ({
   name,
   type = InputEnum.TEXT,
+  error = false,
   value,
   textSize,
   fontWeight,
   onChange,
   disabled = false,
 }) => {
-  const handleChange = (e: BaseSyntheticEvent) => {
-    if (onChange) onChange(e);
+  const handleChange = (event: BaseSyntheticEvent) => {
+    if (onChange) onChange(event);
   };
 
   return (
     <Field
       fullWidth
+      error={error}
       name={name}
       type={type}
       onChange={handleChange}

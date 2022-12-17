@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ButtonBase } from '@mui/material';
+import { ButtonBase, ButtonTypeMap } from '@mui/material';
 
 import { TextElement } from '../text';
 import {
@@ -14,16 +14,18 @@ import { ColorEnum, ColorData, ColorType } from 'src/theme';
 import { ButtonSize } from './constant';
 
 export const Elem: React.FC<{
+  disabled?: boolean;
+  type?: 'submit' | 'reset' | 'button';
   children?: ReactNode;
   text?: string;
   textColor?: ColorType;
   textSize?: FontSizeType;
   fontWeight?: FontWeightType;
-  disabled?: boolean;
   onClick?: Function;
   backgroundColor?: ColorType;
 }> = ({
   text,
+  type = 'button',
   textColor = ColorEnum.TEXT,
   textSize = FontSizeEnum.FORM,
   fontWeight = FontWeightEnum.BOLD,
@@ -31,23 +33,24 @@ export const Elem: React.FC<{
   backgroundColor,
   disabled = false,
 }) => {
-  const handleClick = (e: any) => {
-    if (onClick) onClick(e);
+  const handleClick = (event: any) => {
+    if (onClick) onClick(event);
   };
   return (
-    <Container
+    <Button
       onClick={handleClick}
       background={backgroundColor}
       disabled={disabled}
+      type={type}
     >
       <TextElement color={textColor} size={textSize} type={fontWeight}>
         {text}
       </TextElement>
-    </Container>
+    </Button>
   );
 };
 
-const Container = styled(ButtonBase)<{
+const Button = styled(ButtonBase)<{
   background?: ColorType;
 }>`
   cursor: pointer;

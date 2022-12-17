@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import styled, { css } from 'styled-components';
 import { InputLabel } from '@mui/material';
@@ -12,36 +12,16 @@ import {
   FontSizeType,
   FontWeightData,
   FontWeightEnum,
-  FontWeightType,
-  PaddingSizeData,
-  PaddingSizeEnum,
-  PaddingSizeType,
-  Spacing,
 } from 'src/theme';
 
-import { InputEnum, SizeEnum, InputType } from './constant';
-
 export const Elem: React.FC<{
-  type?: InputType;
   labelFor: string;
   label?: string;
-  name?: string;
-  children?: ReactNode;
-  value?: string;
-  textSize?: FontSizeType | string;
-  disabled?: boolean;
-  onChange?: Function;
-}> = ({
-  labelFor,
-  label,
-  type = InputEnum.TEXT,
-  value,
-  textSize = Spacing(4.5),
-  onChange,
-  disabled = false,
-}) => {
+  error?: boolean;
+  textSize?: FontSizeType;
+}> = ({ labelFor, label, error, textSize }) => {
   return (
-    <Label shrink htmlFor={labelFor}>
+    <Label shrink htmlFor={labelFor} error={error} textsize={textSize}>
       {label}
     </Label>
   );
@@ -50,14 +30,19 @@ export const Elem: React.FC<{
 const Label = styled(InputLabel)<{
   color?: ColorType;
   textsize?: FontSizeType;
+  error?: boolean;
 }>`
   width: 100%;
   font-weight: ${FontWeightData[FontWeightEnum.SEMI_BOLD]};
   transform: none;
   line-height: 1.1;
 
-  ${({ color = ColorEnum.TEXT, textsize = FontSizeEnum.SUB_HEADER }) => css`
-    color: ${ColorData[color]};
+  ${({
+    color = ColorEnum.TEXT,
+    textsize = FontSizeEnum.SUB_HEADER,
+    error = false,
+  }) => css`
+    color: ${error ? ColorData[ColorEnum.RED] : ColorData[color]};
     font-size: ${FontSizeData[textsize]};
   `};
 `;
