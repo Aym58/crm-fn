@@ -1,16 +1,16 @@
-import { Header } from 'src/epic/header';
-import { LayoutPage } from 'src/common/layout-page';
-import { TextElement } from 'src/common/text';
-import { FormRegistration } from 'src/epic/form-registration';
 import React from 'react';
 
-export default function Home() {
+import { FormRegistration } from 'src/epic/form-registration';
+import { Grid } from 'src/common/grid';
+import { TextElement } from 'src/common/text';
+
+export default function Registration() {
   return (
-    <React.Fragment>
-      <Header menu />
-      <LayoutPage>
-        <FormRegistration />
-      </LayoutPage>
-    </React.Fragment>
+    <Grid size="content">
+      <TextElement size="header" type="bold">
+        Create New Account
+      </TextElement>
+      <FormRegistration />
+    </Grid>
   );
 }

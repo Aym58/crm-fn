@@ -1,4 +1,5 @@
-import React, { FormEvent, FormEventHandler, ReactNode } from 'react';
+import React, { FormEventHandler, ReactNode } from 'react';
+import { Spacing } from 'src/theme';
 
 import styled from 'styled-components';
 
@@ -21,6 +22,9 @@ export const Elem: React.FC<{
 
 const Form = styled.form<{}>`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 ${Spacing(4.5)};
 `;
 
 const Input = styled.input<{}>`

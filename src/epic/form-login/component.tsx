@@ -1,9 +1,11 @@
 import { InputText } from 'src/common/input-text';
 
+import React, { useState } from 'react';
+import { FormikValues, useFormik } from 'formik';
+
 import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
-import React, { useState } from 'react';
 import { Form } from 'src/common/form';
 import {
   FormMessages,
@@ -11,8 +13,7 @@ import {
   FormValuesInter,
   FormValuesType,
 } from './constant';
-import { FormikValues, useFormik } from 'formik';
-import { schemaRegistration } from 'src/lib/validation';
+import { schemaLogin } from 'src/lib/validation';
 import { Message } from 'src/common/message';
 import { convertInput } from './convert';
 import { action } from './action';
@@ -25,12 +26,10 @@ export const Component = () => {
 
   const formik: FormikValues = useFormik({
     initialValues: {
-      [FormValues.NAME]: '',
       [FormValues.EMAIL]: '',
       [FormValues.PASSWORD]: '',
-      [FormValues.PASSWORD_REP]: '',
     },
-    validationSchema: schemaRegistration,
+    validationSchema: schemaLogin,
     onSubmit: async (values: FormValuesInter) => {
       setIsError(false);
       setIsSuccess(false);
@@ -66,19 +65,6 @@ export const Component = () => {
         <Grid size="section">
           <Grid size="element">
             <InputLabel
-              labelFor={FormValues.NAME}
-              label={error(FormValues.NAME) ? errors[FormValues.NAME] : 'Name'}
-              error={error(FormValues.NAME)}
-            />
-            <InputText
-              name={FormValues.NAME}
-              type="text"
-              onChange={handleChange}
-            />
-          </Grid>
-
-          <Grid size="element">
-            <InputLabel
               labelFor={FormValues.EMAIL}
               label={
                 error(FormValues.EMAIL) ? errors[FormValues.EMAIL] : 'Email'
@@ -104,23 +90,6 @@ export const Component = () => {
             />
             <InputText
               name={FormValues.PASSWORD}
-              type="password"
-              onChange={handleChange}
-            />
-          </Grid>
-
-          <Grid size="element">
-            <InputLabel
-              labelFor={FormValues.PASSWORD_REP}
-              label={
-                error(FormValues.PASSWORD_REP)
-                  ? errors[FormValues.PASSWORD_REP]
-                  : 'Repeat password'
-              }
-              error={error(FormValues.PASSWORD_REP)}
-            />
-            <InputText
-              name={FormValues.PASSWORD_REP}
               type="password"
               onChange={handleChange}
             />

@@ -1,21 +1,25 @@
 import { InputText } from 'src/common/input-text';
 
+import React, { useState } from 'react';
+import { FormikValues, useFormik } from 'formik';
+
 import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
-import React, { useState } from 'react';
 import { Form } from 'src/common/form';
 import {
   FormMessages,
   FormValues,
   FormValuesInter,
   FormValuesType,
+  SourceValues,
 } from './constant';
-import { FormikValues, useFormik } from 'formik';
-import { schemaRegistration } from 'src/lib/validation';
+import { schemaLogin, schemaScript } from 'src/lib/validation';
 import { Message } from 'src/common/message';
 import { convertInput } from './convert';
 import { action } from './action';
+import { InputSelect } from 'src/common/input-select';
+import { InputSelectOption } from 'src/common/input-select-option';
 
 export const Component = () => {
   const [message, setMessage] = useState<string>('');
@@ -26,11 +30,10 @@ export const Component = () => {
   const formik: FormikValues = useFormik({
     initialValues: {
       [FormValues.NAME]: '',
-      [FormValues.EMAIL]: '',
-      [FormValues.PASSWORD]: '',
-      [FormValues.PASSWORD_REP]: '',
+      [FormValues.SOURCE]: '',
+      [FormValues.LINK]: '',
     },
-    validationSchema: schemaRegistration,
+    validationSchema: schemaScript,
     onSubmit: async (values: FormValuesInter) => {
       setIsError(false);
       setIsSuccess(false);
@@ -49,7 +52,8 @@ export const Component = () => {
     },
   });
 
-  const { touched, errors, handleSubmit, handleChange }: FormikValues = formik;
+  const { touched, errors, handleSubmit, handleChange, values }: FormikValues =
+    formik;
 
   const error = (field: FormValuesType): boolean =>
     touched[field] && Boolean(errors[field]);
@@ -79,49 +83,39 @@ export const Component = () => {
 
           <Grid size="element">
             <InputLabel
-              labelFor={FormValues.EMAIL}
+              labelFor={FormValues.SOURCE}
               label={
-                error(FormValues.EMAIL) ? errors[FormValues.EMAIL] : 'Email'
+                error(FormValues.SOURCE) ? errors[FormValues.SOURCE] : 'Source'
               }
-              error={error(FormValues.EMAIL)}
+              error={error(FormValues.SOURCE)}
             />
-            <InputText
-              name={FormValues.EMAIL}
-              type="email"
+            <InputSelect
+              name={FormValues.SOURCE}
+              value={values[FormValues.SOURCE]}
+              type="text"
               onChange={handleChange}
-            />
+            >
+              <InputSelectOption value={SourceValues.LINKEDIN}>
+                {SourceValues.LINKEDIN}
+              </InputSelectOption>
+              <InputSelectOption value={SourceValues.TELEGRAM}>
+                {SourceValues.TELEGRAM}
+              </InputSelectOption>
+              <InputSelectOption value={SourceValues.UPWORK}>
+                {SourceValues.UPWORK}
+              </InputSelectOption>
+            </InputSelect>
           </Grid>
 
           <Grid size="element">
             <InputLabel
-              labelFor={FormValues.PASSWORD}
-              label={
-                error(FormValues.PASSWORD)
-                  ? errors[FormValues.PASSWORD]
-                  : 'Password'
-              }
-              error={error(FormValues.PASSWORD)}
+              labelFor={FormValues.LINK}
+              label={error(FormValues.LINK) ? errors[FormValues.LINK] : 'Link'}
+              error={error(FormValues.LINK)}
             />
             <InputText
-              name={FormValues.PASSWORD}
-              type="password"
-              onChange={handleChange}
-            />
-          </Grid>
-
-          <Grid size="element">
-            <InputLabel
-              labelFor={FormValues.PASSWORD_REP}
-              label={
-                error(FormValues.PASSWORD_REP)
-                  ? errors[FormValues.PASSWORD_REP]
-                  : 'Repeat password'
-              }
-              error={error(FormValues.PASSWORD_REP)}
-            />
-            <InputText
-              name={FormValues.PASSWORD_REP}
-              type="password"
+              name={FormValues.LINK}
+              type="text"
               onChange={handleChange}
             />
           </Grid>

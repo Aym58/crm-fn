@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ButtonBase, ButtonTypeMap } from '@mui/material';
+import { ButtonBase } from '@mui/material';
 
 import { TextElement } from '../text';
 import {
@@ -11,7 +11,7 @@ import {
   FontWeightType,
 } from 'src/theme';
 import { ColorEnum, ColorData, ColorType } from 'src/theme';
-import { ButtonSize } from './constant';
+import { Size } from './constant';
 
 export const Elem: React.FC<{
   disabled?: boolean;
@@ -53,11 +53,13 @@ export const Elem: React.FC<{
 const Button = styled(ButtonBase)<{
   background?: ColorType;
 }>`
+  display: block;
+  justify-self: center;
   cursor: pointer;
   border: none;
   border-radius: 0;
-  height: ${ButtonSize.HEIGHT};
-  width: ${ButtonSize.WIDTH};
+  height: ${Size.HEIGHT};
+  width: ${Size.WIDTH};
 
   ${({ background = ColorEnum.GREEN }) => css`
     background: ${ColorData[background]};

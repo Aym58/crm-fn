@@ -1,1 +1,6 @@
-export { schema as validateInput } from './validate';
+export {
+  schemaRegistration,
+  schemaLogin,
+  schemaScript,
+  schemaLead,
+} from './validate';

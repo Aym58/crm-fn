@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { FormLogin } from 'src/epic/form-login';
-import { Grid } from 'src/common/grid';
+import { FormLeadCreate } from 'src/epic/form-lead-create';
 import { TextElement } from 'src/common/text';
+import { Grid } from 'src/common/grid';
 
-export default function Login() {
+export default function LeadCreate() {
   return (
     <Grid size="content">
       <TextElement size="header" type="bold">
-        Login
+        Create Lead
       </TextElement>
-      <FormLogin />
+      <FormLeadCreate />
     </Grid>
   );
 }

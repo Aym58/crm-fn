@@ -29,5 +29,8 @@ const InnerContainer = styled.div`
   width: 100%;
   max-width: ${MAX_WIDTH};
   height: 100%;
-  padding: ${PaddingSizeData[PaddingSizeEnum.CONTENT]};
+  padding-left: ${PaddingSizeData[PaddingSizeEnum.CONTENT]};
+  padding-right: ${PaddingSizeData[PaddingSizeEnum.CONTENT]};
+  padding-top: ${PaddingSizeData[PaddingSizeEnum.ZONE]};
+  padding-bottom: ${PaddingSizeData[PaddingSizeEnum.ZONE]};
 `;
