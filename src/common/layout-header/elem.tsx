@@ -28,6 +28,9 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   max-width: ${MAX_WIDTH};
   height: 100%;

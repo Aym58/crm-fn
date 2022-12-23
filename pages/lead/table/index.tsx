@@ -16,9 +16,9 @@ export default function ScriptCreate({ payload }: PropsInter) {
     return (
       <Grid size="content">
         <TextElement size="header" type="bold">
-          Discovery
+          Lead Table
         </TextElement>
-        <AddButton to="/script/create" />
+        <AddButton to="/lead/create" />
         <ScriptList data={data} />
       </Grid>
     );

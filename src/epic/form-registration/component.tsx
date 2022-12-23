@@ -1,9 +1,12 @@
-import { InputText } from 'src/common/input-text';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { FormikValues, useFormik } from 'formik';
 
+import { InputText } from 'src/common/input-text';
 import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
-import React, { useState } from 'react';
+
 import { Form } from 'src/common/form';
 import {
   FormMessages,
@@ -11,7 +14,6 @@ import {
   FormValuesInter,
   FormValuesType,
 } from './constant';
-import { FormikValues, useFormik } from 'formik';
 import { schemaRegistration } from 'src/lib/validation';
 import { Message } from 'src/common/message';
 import { convertInput } from './convert';
@@ -22,6 +24,8 @@ export const Component = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const formik: FormikValues = useFormik({
     initialValues: {
@@ -42,6 +46,7 @@ export const Component = () => {
       if (response?.success) {
         setIsSuccess(true);
         setMessage(FormMessages.SUCCESS);
+        router.push('/login');
       } else {
         setIsError(true);
         setMessage(response?.message || FormMessages.ERROR_UNKNOWN);

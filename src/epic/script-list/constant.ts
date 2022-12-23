@@ -1,22 +1,28 @@
 export interface DataInter {
   id: number;
   name: string;
-  source: DataSourceValues;
+  source: SourceType;
   link: string;
   user: { email: string };
 }
 
-export enum DataSourceValues {
+export interface PropsInter {
+  data: DataInter[];
+}
+
+export enum SourceEnum {
   UPWORK = 'upwork',
   TELEGRAM = 'telegram',
   LINKEDIN = 'linkedin',
 }
 
-export enum SourceNames {
-  UPWORK = 'Upwork',
-  TELEGRAM = 'Telegram',
-  LINKEDIN = 'Linkedin',
-}
+export type SourceType = `${SourceEnum}`;
+
+export const SourceData = {
+  [SourceEnum.UPWORK]: 'Upwork',
+  [SourceEnum.TELEGRAM]: 'Telegram',
+  [SourceEnum.LINKEDIN]: 'Linkedin',
+};
 
 export const API = {
   METHOD: 'GET',

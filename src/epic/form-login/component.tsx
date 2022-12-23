@@ -1,8 +1,8 @@
-import { InputText } from 'src/common/input-text';
-
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { FormikValues, useFormik } from 'formik';
 
+import { InputText } from 'src/common/input-text';
 import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
@@ -24,6 +24,8 @@ export const Component = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
+  const router = useRouter();
+
   const formik: FormikValues = useFormik({
     initialValues: {
       [FormValues.EMAIL]: '',
@@ -41,6 +43,7 @@ export const Component = () => {
       if (response?.success) {
         setIsSuccess(true);
         setMessage(FormMessages.SUCCESS);
+        router.push('/');
       } else {
         setIsError(true);
         setMessage(response?.message || FormMessages.ERROR_UNKNOWN);
