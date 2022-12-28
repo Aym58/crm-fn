@@ -14,13 +14,15 @@ export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;
   if (success && data) {
     return (
-      <Grid size="content">
-        <TextElement size="header" type="bold">
-          Discovery
-        </TextElement>
+      <React.Fragment>
         <AddButton to="/script/create" />
-        <ScriptList data={data} />
-      </Grid>
+        <Grid size="content">
+          <TextElement size="header" type="bold">
+            Discovery
+          </TextElement>
+          <ScriptList data={data} />
+        </Grid>
+      </React.Fragment>
     );
   }
 

@@ -8,20 +8,18 @@ import { convertHttpError, convertHttpResponse, HttpError } from 'src/lib/http';
 
 import { API, PropsInter } from './constant';
 import { getToken } from 'src/lib/auth';
-import { AddButton } from 'src/epic/add-button';
-import { LeadTable } from 'src/epic/lead-table';
+import { FormChangeTasks } from 'src/epic/form-change-tasks';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;
   if (success && data) {
     return (
       <React.Fragment>
-        <AddButton to="/lead/create" />
         <Grid size="content">
           <TextElement size="header" type="bold">
-            Lead Table
+            Change Tasks
           </TextElement>
-          <LeadTable data={data} />
+          <FormChangeTasks data={data} />
         </Grid>
       </React.Fragment>
     );
@@ -31,7 +29,7 @@ export default function ScriptCreate({ payload }: PropsInter) {
     return (
       <Grid size="content">
         <TextElement size="header" type="bold">
-          Lead Table
+          Change Tasks
         </TextElement>
         <TextElement size="sub-header" type="semi-bold">
           {message}
@@ -44,8 +42,8 @@ export default function ScriptCreate({ payload }: PropsInter) {
 export async function getServerSideProps({
   req,
   res,
+  params,
 }: GetServerSidePropsContext) {
-  const url = BASE_URL + API.URL;
   const token = getToken({ req, res });
   if (!token)
     return {
@@ -56,6 +54,8 @@ export async function getServerSideProps({
     };
 
   try {
+    const id = params?.id;
+    const url = BASE_URL + API.URL + `${id}`;
     const response = await fetch(url, {
       method: API.METHOD,
       headers: {

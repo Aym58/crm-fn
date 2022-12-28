@@ -27,6 +27,7 @@ export const Elem: React.FC<{
 };
 
 const StyledLink = styled(Link)`
+  color: inherit;
   font-family: ${inter.style.fontFamily};
   text-decoration: none;
   cursor: pointer;

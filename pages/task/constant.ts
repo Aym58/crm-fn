@@ -1,4 +1,4 @@
-import { DataInter } from 'src/epic/lead-table/constant';
+import { DataInter } from 'src/epic/task-table/constant';
 
 export interface PayloadInter {
   success: boolean;
@@ -18,5 +18,5 @@ export enum DataSourceValues {
 
 export const API = {
   METHOD: 'GET',
-  URL: '/lead/all',
+  URL: '/task/list',
 };

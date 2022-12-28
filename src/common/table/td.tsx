@@ -7,52 +7,42 @@ import {
   FontSizeType,
   FontWeightEnum,
   FontWeightType,
+  PaddingSizeData,
+  PaddingSizeEnum,
 } from 'src/theme';
-
 import { ColorEnum, ColorData, ColorType } from 'src/theme';
 import { Size } from './constant';
 
 export const Elem: React.FC<{
-  error?: boolean;
   children?: ReactNode;
-  text?: string;
   textColor?: ColorType;
-  backgroundColor?: ColorType;
   textSize?: FontSizeType;
   fontWeight?: FontWeightType;
+  backgroundColor?: ColorType;
 }> = ({
-  text,
-  error,
-  backgroundColor,
+  children,
   textColor = ColorEnum.TEXT,
-  textSize = FontSizeEnum.SUB_HEADER,
-  fontWeight = FontWeightEnum.MEDIUM,
+  textSize = FontSizeEnum.FORM,
+  fontWeight = FontWeightEnum.BOLD,
+  backgroundColor,
 }) => {
   return (
-    <Message background={backgroundColor}>
-      {text && (
-        <TextElement
-          color={error ? ColorEnum.RED : textColor}
-          size={textSize}
-          type={fontWeight}
-          lineHeight
-        >
-          {text}
-        </TextElement>
-      )}
-    </Message>
+    <Data background={backgroundColor}>
+      <TextElement color={textColor} size={textSize} type={fontWeight} oneLine>
+        {children}
+      </TextElement>
+    </Data>
   );
 };
 
-const Message = styled.div<{
+const Data = styled.td<{
   background?: ColorType;
 }>`
-  text-align: center;
+  max-width: ${Size.MAX_CELL_WIDTH};
+  display: table-cell;
   border: none;
-  border-radius: 0;
-  height: ${Size.HEIGHT};
-  width: ${Size.WIDTH};
-
+  text-align: left;
+  padding: ${PaddingSizeData[PaddingSizeEnum.ELEMENT]};
   ${({ background = ColorEnum.BACKGROUND }) => css`
     background: ${ColorData[background]};
   `}

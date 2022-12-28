@@ -8,20 +8,18 @@ import { convertHttpError, convertHttpResponse, HttpError } from 'src/lib/http';
 
 import { API, PropsInter } from './constant';
 import { getToken } from 'src/lib/auth';
-import { AddButton } from 'src/epic/add-button';
-import { LeadTable } from 'src/epic/lead-table';
+import { FailureRateGraph } from 'src/epic/task-failure-graph';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;
   if (success && data) {
     return (
       <React.Fragment>
-        <AddButton to="/lead/create" />
         <Grid size="content">
           <TextElement size="header" type="bold">
-            Lead Table
+            Analizer
           </TextElement>
-          <LeadTable data={data} />
+          <FailureRateGraph data={data} />
         </Grid>
       </React.Fragment>
     );

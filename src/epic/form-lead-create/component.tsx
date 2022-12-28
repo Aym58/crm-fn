@@ -1,8 +1,9 @@
-import { InputText } from 'src/common/input-text';
-
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { FormikValues, useFormik } from 'formik';
 
+import { InputText } from 'src/common/input-text';
 import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
@@ -30,6 +31,8 @@ export const Component = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
+  const route = useRouter();
+
   const formik: FormikValues = useFormik({
     initialValues: {
       [FormValues.NAME]: '',
@@ -39,19 +42,20 @@ export const Component = () => {
       [FormValues.CONTACT]: '',
     },
     validationSchema: schemaLead,
-    onSubmit: async (values: FormValuesInter) => {
+    onSubmit: async (values: FormValuesInter, { resetForm }) => {
       console.log(values);
       setIsError(false);
       setIsSuccess(false);
       setMessage('');
       setIsLoading(true);
       const payload = convertInput(values);
-      console.log(payload);
       const response = await action(payload);
       setIsLoading(false);
       if (response?.success) {
         setIsSuccess(true);
         setMessage(FormMessages.SUCCESS);
+        resetForm();
+        route.push('/lead/table');
       } else {
         setIsError(true);
         setMessage(response?.message || FormMessages.ERROR_UNKNOWN);

@@ -7,8 +7,18 @@ export const convertHttpResponse = ({
   message,
   data,
 }: HttpResponse) => {
-  if (statusCode === 200 || statusCode === 201 || statusCode === 202) {
+  if (
+    (data && statusCode === 200) ||
+    statusCode === 201 ||
+    statusCode === 202
+  ) {
     return { success: true, message, data };
+  } else if (
+    (!data && statusCode === 200) ||
+    statusCode === 201 ||
+    statusCode === 202
+  ) {
+    return { success: true, message };
   } else {
     return { success: false };
   }

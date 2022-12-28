@@ -1,9 +1,9 @@
-import { DataInter } from 'src/epic/lead-table/constant';
+import { DataInter } from 'src/epic/form-change-tasks/constant';
 
 export interface PayloadInter {
   success: boolean;
   message?: string;
-  data?: DataInter[];
+  data?: DataInter;
 }
 
 export interface PropsInter {
@@ -18,5 +18,5 @@ export enum DataSourceValues {
 
 export const API = {
   METHOD: 'GET',
-  URL: '/lead/all',
+  URL: '/task/',
 };

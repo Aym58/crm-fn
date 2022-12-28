@@ -9,11 +9,13 @@ import {
   FontSizeType,
   FontWeightEnum,
   FontWeightType,
+  Spacing,
 } from 'src/theme';
 import { ColorEnum, ColorData, ColorType } from 'src/theme';
 import { Size } from './constant';
 
 export const Elem: React.FC<{
+  table?: boolean;
   disabled?: boolean;
   type?: 'submit' | 'reset' | 'button';
   children?: ReactNode;
@@ -27,11 +29,12 @@ export const Elem: React.FC<{
   text,
   type = 'button',
   textColor = ColorEnum.TEXT,
-  textSize = FontSizeEnum.FORM,
-  fontWeight = FontWeightEnum.BOLD,
+  textSize = FontSizeEnum.SUB_HEADER,
+  fontWeight = FontWeightEnum.SEMI_BOLD,
   onClick,
   backgroundColor,
   disabled = false,
+  table = false,
 }) => {
   const handleClick = (event: any) => {
     if (onClick) onClick(event);
@@ -42,28 +45,33 @@ export const Elem: React.FC<{
       background={backgroundColor}
       disabled={disabled}
       type={type}
+      istable={table}
     >
-      <TextElement color={textColor} size={textSize} type={fontWeight}>
+      <TextElement color={textColor} size={textSize} type={fontWeight} oneLine>
         {text}
       </TextElement>
     </Button>
   );
 };
 
-const Button = styled(ButtonBase)<{
+const Button = styled.button<{
   background?: ColorType;
+  istable?: boolean;
 }>`
-  display: block;
+  display: flex;
   justify-self: center;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  border: none;
+  border: 1px solid ${ColorData[ColorEnum.TEXT]};
   border-radius: 0;
-  height: ${Size.HEIGHT};
-  width: ${Size.WIDTH};
   :disabled {
     opacity: 15%;
   }
-  ${({ background = ColorEnum.GREEN }) => css`
+  padding: ${Spacing(0.5)};
+  ${({ background = ColorEnum.GREEN, istable = false }) => css`
+    height: ${istable ? Size.HEIGHT_TABLE : Size.HEIGHT};
+    width: ${istable ? 'auto' : Size.WIDTH};
     background: ${ColorData[background]};
   `}
 `;
