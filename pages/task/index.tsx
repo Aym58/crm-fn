@@ -63,7 +63,6 @@ export async function getServerSideProps({
     });
     const payloadRaw = await response.json();
     const payload = convertHttpResponse(payloadRaw);
-
     if (!payload.success) {
       throw new HttpError(payloadRaw.statusCode, payloadRaw.message);
     }
@@ -71,6 +70,6 @@ export async function getServerSideProps({
     return { props: { payload } };
   } catch (err: any) {
     const error = convertHttpError(err);
-    return { props: { error } };
+    return { props: { payload: error } };
   }
 }

@@ -1,7 +1,5 @@
 import { HttpResponse } from './constant';
 
-export const HttpRequest = () => {};
-
 export const convertHttpResponse = ({
   statusCode,
   message,

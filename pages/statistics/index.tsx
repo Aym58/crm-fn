@@ -71,6 +71,6 @@ export async function getServerSideProps({
     return { props: { payload } };
   } catch (err: any) {
     const error = convertHttpError(err);
-    return { props: { error } };
+    return { props: { payload: error } };
   }
 }
