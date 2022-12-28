@@ -32,7 +32,6 @@ const Grid = styled.div<{
 
   ${({ size = PaddingSizeEnum.BLOCK, noStretch = false, spacing }) => css`
     width: ${noStretch ? 'auto' : '100%'};
-
     grid-gap: ${spacing ? Spacing(spacing) : PaddingSizeData[size]};
   `}
 `;

@@ -1,5 +1,3 @@
-import React, { ReactNode } from 'react';
-
 import styled, { css } from 'styled-components';
 
 import { MenuItem } from '@mui/material';
@@ -18,7 +16,7 @@ import {
   PaddingSizeEnum,
 } from 'src/theme';
 
-import { InputEnum, SizeEnum, InputType } from './constant';
+import { SizeEnum } from './constant';
 
 export const Option = styled(MenuItem)<{
   color?: ColorType;

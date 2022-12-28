@@ -22,7 +22,6 @@ export const action = async (request: PayloadInter) => {
       body: JSON.stringify(request),
     });
     const payloadRaw = await response.json();
-    console.log(payloadRaw);
     const payload = convertHttpResponse(payloadRaw);
 
     if (!payload.success) {

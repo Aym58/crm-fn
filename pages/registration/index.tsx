@@ -2,14 +2,12 @@ import React from 'react';
 
 import { FormRegistration } from 'src/epic/form-registration';
 import { Grid } from 'src/common/grid';
-import { TextElement } from 'src/common/text';
+import { GeometricAnimation } from 'src/epic/geometric-animation';
 
 export default function Registration() {
   return (
     <Grid size="content">
-      <TextElement size="header" type="bold">
-        Create New Account
-      </TextElement>
+      <GeometricAnimation delay={2000} />
       <FormRegistration />
     </Grid>
   );

@@ -1,6 +1,6 @@
 import { DataInter } from 'src/epic/lead-table/constant';
 
-export interface PayloadInter {
+interface PayloadInter {
   success: boolean;
   message?: string;
   data?: DataInter[];

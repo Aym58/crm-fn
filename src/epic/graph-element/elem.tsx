@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ButtonBase } from '@mui/material';
-
 import { TextElement } from 'src/common/text';
 import {
   FontSizeEnum,
@@ -14,7 +12,6 @@ import {
   Spacing,
 } from 'src/theme';
 import { ColorEnum, ColorData, ColorType } from 'src/theme';
-import { Size } from './constant';
 
 export const Elem: React.FC<{
   text: string;

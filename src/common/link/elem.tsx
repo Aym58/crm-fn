@@ -1,19 +1,8 @@
 import React, { ReactNode } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { Inter } from '@next/font/google';
 
-import {
-  ColorData,
-  ColorEnum,
-  ColorType,
-  FontSizeData,
-  FontSizeEnum,
-  FontSizeType,
-  FontWeightData,
-  FontWeightEnum,
-  FontWeightType,
-} from 'src/theme';
 import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });

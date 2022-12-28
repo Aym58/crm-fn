@@ -1,31 +1,11 @@
-import React, { useState } from 'react';
-
-import {
-  DataInter,
-  FormMessages,
-  PayloadInter,
-  PropsInter,
-  TaskData,
-  TaskEnum,
-} from './constant';
-import { TableHeaders } from './constant';
-import {
-  TableTH,
-  TableTD,
-  TableRow,
-  TableHead,
-  TableBody,
-  Table,
-  TableContainer,
-} from 'src/common/table';
-import { ActionButton } from 'src/common/button-action';
-import { StatusEnum } from '../form-change-tasks/constant';
-import { Grid } from 'src/common/grid';
-import { Message } from 'src/common/message';
-
+import React from 'react';
 import { useRouter } from 'next/router';
+
+import { Grid } from 'src/common/grid';
 import { TextElement } from 'src/common/text';
 import { GraphElement } from '../graph-element';
+
+import { PropsInter, TaskData } from './constant';
 
 export const Component = ({ data }: PropsInter) => {
   const router = useRouter();
@@ -47,6 +27,3 @@ export const Component = ({ data }: PropsInter) => {
     </Grid>
   );
 };
-//          <TextElement key={i} size="regular" type="regular">
-//{el.failureRate}% {TaskData[el.task]}
-//</TextElement>

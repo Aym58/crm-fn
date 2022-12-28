@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { PropsInter, SourceData, TaskData } from './constant';
-import { TableHeaders } from './constant';
 import {
   TableTH,
   TableTD,
@@ -12,7 +10,9 @@ import {
   TableContainer,
 } from 'src/common/table';
 import { Link } from 'src/common/link';
+
 import { StatusEnum } from '../form-change-tasks/constant';
+import { PropsInter, SourceData, TaskData, TableHeaders } from './constant';
 
 export const Component = ({ data }: PropsInter) => {
   return (

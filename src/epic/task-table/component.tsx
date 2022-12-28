@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 
 import {
-  DataInter,
-  FormMessages,
-  PayloadInter,
-  PropsInter,
-  TaskData,
-  TaskEnum,
-} from './constant';
-import { TableHeaders } from './constant';
-import {
   TableTH,
   TableTD,
   TableRow,
@@ -19,21 +10,29 @@ import {
   TableContainer,
 } from 'src/common/table';
 import { ActionButton } from 'src/common/button-action';
-import { StatusEnum } from '../form-change-tasks/constant';
 import { Grid } from 'src/common/grid';
 import { Message } from 'src/common/message';
-import { action } from './action';
 import { useRouter } from 'next/router';
+
+import { StatusEnum } from '../form-change-tasks/constant';
+import { action } from './action';
+import {
+  DataInter,
+  FormMessages,
+  PayloadInter,
+  PropsInter,
+  TaskData,
+  TaskEnum,
+  TableHeaders,
+} from './constant';
 
 export const Component = ({ data }: PropsInter) => {
   const [message, setMessage] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-
-  const tasks = Object.keys(TaskData);
 
   const router = useRouter();
+  const tasks = Object.keys(TaskData);
 
   const handleDone = (task: DataInter) => {
     const payload: PayloadInter = {
@@ -61,13 +60,11 @@ export const Component = ({ data }: PropsInter) => {
 
   const handleSubmit = async (payload: PayloadInter) => {
     setIsError(false);
-    setIsSuccess(false);
     setMessage('');
     setIsLoading(true);
     const response = await action(payload);
     setIsLoading(false);
     if (response?.success) {
-      setIsSuccess(true);
       setMessage(FormMessages.SUCCESS);
       router.push('/task');
     } else {

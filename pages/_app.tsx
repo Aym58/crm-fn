@@ -6,7 +6,6 @@ import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
 import createEmotionCache from 'src/lib/emotion-cache';
-
 import { GlobalStyle } from 'src/theme/global-style';
 import { LayoutApp } from 'src/common/layout-app';
 import { theme } from 'src/theme';

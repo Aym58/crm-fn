@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { PropsInter, SourceEnum, SourceData, SourceType } from './constant';
 import { Grid } from 'src/common/grid';
 import { TextElement } from 'src/common/text';
 import { LinkExternal } from 'src/common/link-external';
+
+import { PropsInter, SourceData } from './constant';
 
 export const Component = ({ data }: PropsInter) => {
   return (

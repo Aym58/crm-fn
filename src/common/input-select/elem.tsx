@@ -1,8 +1,6 @@
-import React, { BaseSyntheticEvent, ReactNode } from 'react';
-
 import styled, { css } from 'styled-components';
 
-import { Select, SelectChangeEvent } from '@mui/material';
+import { Select } from '@mui/material';
 
 import {
   ColorData,
@@ -16,10 +14,9 @@ import {
   FontWeightType,
   PaddingSizeData,
   PaddingSizeEnum,
-  PaddingSizeType,
 } from 'src/theme';
 
-import { InputEnum, SizeEnum, InputType } from './constant';
+import { SizeEnum } from './constant';
 
 export const Field = styled(Select)<{
   onChange?: Function;

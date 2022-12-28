@@ -5,11 +5,11 @@ import { Grid } from 'src/common/grid';
 import { TextElement } from 'src/common/text';
 import { BASE_URL } from 'src/lib/http/constant';
 import { convertHttpError, convertHttpResponse, HttpError } from 'src/lib/http';
-
-import { API, PropsInter } from './constant';
 import { getToken } from 'src/lib/auth';
 import { AddButton } from 'src/epic/add-button';
 import { LeadTable } from 'src/epic/lead-table';
+
+import { API, PropsInter } from './constant';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;

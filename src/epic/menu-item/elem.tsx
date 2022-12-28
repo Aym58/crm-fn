@@ -1,7 +1,8 @@
-import { Link } from 'src/common/link';
-import React, { ReactNode } from 'react';
-import { Spacing } from 'src/theme';
 import styled from 'styled-components';
+import React, { ReactNode } from 'react';
+
+import { Link } from 'src/common/link';
+import { Spacing } from 'src/theme';
 
 export const Elem: React.FC<{
   to: string;

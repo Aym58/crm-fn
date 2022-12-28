@@ -1,9 +1,8 @@
+import { GetServerSidePropsContext } from 'next';
+
 import { TextElement } from 'src/common/text';
 import { Grid } from 'src/common/grid';
-import { Link } from 'src/common/link';
-import { GetServerSidePropsContext } from 'next';
 import { checkAuth } from 'src/lib/auth';
-
 import CircleIcon from 'src/assets/icons/circle.svg';
 import SquareIcon from 'src/assets/icons/square.svg';
 import StarIcon from 'src/assets/icons/star.svg';

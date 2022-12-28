@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import { Button } from 'src/common/button';
 import { Grid } from 'src/common/grid';
 import { Form } from 'src/common/form';
+import { Message } from 'src/common/message';
+import ArrowIcon from 'src/assets/icons/arrow.svg';
+import { ActionButton } from 'src/common/button-action';
+
+import { convertDataToUi } from './convert';
+import { action } from './action';
 import {
   FormMessages,
   PropsInter,
-  DataInter,
-  FormValuesInter,
   TaskEnum,
   TaskData,
   TaskType,
@@ -16,18 +21,11 @@ import {
   StatusEnum,
   StatusType,
 } from './constant';
-import { Message } from 'src/common/message';
-import { action } from './action';
-import ArrowIcon from 'src/assets/icons/arrow.svg';
-import { ActionButton } from 'src/common/button-action';
-import styled from 'styled-components';
-import { convertDataToUi } from './convert';
 
 export const Component = ({ data }: PropsInter) => {
   const [message, setMessage] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [steps, setSteps] = useState<StepsType>(convertDataToUi(data));
 
   const handleClick = (task: TaskType, status: StatusType | null) => {
@@ -53,14 +51,11 @@ export const Component = ({ data }: PropsInter) => {
 
   const handleSubmit = async () => {
     setIsError(false);
-    setIsSuccess(false);
     setMessage('');
     setIsLoading(true);
     const response = await action(data);
     setIsLoading(false);
-    console.log(response);
     if (response?.success) {
-      setIsSuccess(true);
       setMessage(FormMessages.SUCCESS);
     } else {
       setIsError(true);

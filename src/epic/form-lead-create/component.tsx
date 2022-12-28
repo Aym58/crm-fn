@@ -8,6 +8,13 @@ import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
 import { Form } from 'src/common/form';
+import { schemaLead } from 'src/lib/validation';
+import { Message } from 'src/common/message';
+import { InputSelect } from 'src/common/input-select';
+import { InputSelectOption } from 'src/common/input-select-option';
+
+import { convertInput } from './convert';
+import { action } from './action';
 import {
   BudgetValues,
   FormMessages,
@@ -18,18 +25,11 @@ import {
   TaskValues,
   TaskValuesData,
 } from './constant';
-import { schemaLead } from 'src/lib/validation';
-import { Message } from 'src/common/message';
-import { convertInput } from './convert';
-import { action } from './action';
-import { InputSelect } from 'src/common/input-select';
-import { InputSelectOption } from 'src/common/input-select-option';
 
 export const Component = () => {
   const [message, setMessage] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   const route = useRouter();
 
@@ -43,16 +43,13 @@ export const Component = () => {
     },
     validationSchema: schemaLead,
     onSubmit: async (values: FormValuesInter, { resetForm }) => {
-      console.log(values);
       setIsError(false);
-      setIsSuccess(false);
       setMessage('');
       setIsLoading(true);
       const payload = convertInput(values);
       const response = await action(payload);
       setIsLoading(false);
       if (response?.success) {
-        setIsSuccess(true);
         setMessage(FormMessages.SUCCESS);
         resetForm();
         route.push('/lead/table');

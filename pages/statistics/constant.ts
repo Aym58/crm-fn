@@ -1,4 +1,4 @@
-import { DataInter } from 'src/epic/task-table/constant';
+import { DataInter } from 'src/epic/task-failure-graph/constant';
 
 export interface PayloadInter {
   success: boolean;

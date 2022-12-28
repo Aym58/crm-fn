@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ButtonBase } from '@mui/material';
-
 import { TextElement } from '../text';
 import {
   FontSizeEnum,

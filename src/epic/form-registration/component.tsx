@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import { FormikValues, useFormik } from 'formik';
 
 import { InputText } from 'src/common/input-text';
 import { Button } from 'src/common/button';
 import { InputLabel } from 'src/common/input-label';
 import { Grid } from 'src/common/grid';
-
 import { Form } from 'src/common/form';
+import { schemaRegistration } from 'src/lib/validation';
+import { Message } from 'src/common/message';
+
+import { convertInput } from './convert';
+import { action } from './action';
 import {
   FormMessages,
   FormValues,
   FormValuesInter,
   FormValuesType,
 } from './constant';
-import { schemaRegistration } from 'src/lib/validation';
-import { Message } from 'src/common/message';
-import { convertInput } from './convert';
-import { action } from './action';
 
 export const Component = () => {
   const [message, setMessage] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -37,14 +37,12 @@ export const Component = () => {
     validationSchema: schemaRegistration,
     onSubmit: async (values: FormValuesInter) => {
       setIsError(false);
-      setIsSuccess(false);
       setMessage('');
       setIsLoading(true);
       const payload = convertInput(values);
       const response = await action(payload);
       setIsLoading(false);
       if (response?.success) {
-        setIsSuccess(true);
         setMessage(FormMessages.SUCCESS);
         router.push('/login');
       } else {
@@ -132,7 +130,11 @@ export const Component = () => {
           </Grid>
         </Grid>
         <Message text={message} error={isError} />
-        <Button text="Submit" type="submit" disabled={isFormDisabled()} />
+        <Button
+          text="Create Account"
+          type="submit"
+          disabled={isFormDisabled()}
+        />
       </Grid>
     </Form>
   );

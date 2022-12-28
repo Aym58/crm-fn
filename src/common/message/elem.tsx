@@ -8,8 +8,8 @@ import {
   FontWeightEnum,
   FontWeightType,
 } from 'src/theme';
-
 import { ColorEnum, ColorData, ColorType } from 'src/theme';
+
 import { Size } from './constant';
 
 export const Elem: React.FC<{
