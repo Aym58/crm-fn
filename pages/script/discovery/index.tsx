@@ -9,7 +9,7 @@ import { ScriptList } from 'src/epic/script-list';
 import { getToken } from 'src/lib/auth';
 import { AddButton } from 'src/epic/add-button';
 
-import { API, PropsInter } from './constant';
+import { API, PropsInter } from 'src/constant/script-discovery';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;

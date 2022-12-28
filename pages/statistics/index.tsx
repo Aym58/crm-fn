@@ -8,7 +8,7 @@ import { convertHttpError, convertHttpResponse, HttpError } from 'src/lib/http';
 import { getToken } from 'src/lib/auth';
 import { FailureRateGraph } from 'src/epic/task-failure-graph';
 
-import { API, PropsInter } from './constant';
+import { API, PropsInter } from 'src/constant/statistics';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;

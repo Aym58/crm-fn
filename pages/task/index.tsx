@@ -8,7 +8,7 @@ import { convertHttpError, convertHttpResponse, HttpError } from 'src/lib/http';
 import { getToken } from 'src/lib/auth';
 import { TaskTable } from 'src/epic/task-table';
 
-import { API, PropsInter } from './constant';
+import { API, PropsInter } from 'src/constant/task/constant';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;

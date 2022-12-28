@@ -9,7 +9,7 @@ import { getToken } from 'src/lib/auth';
 import { AddButton } from 'src/epic/add-button';
 import { LeadTable } from 'src/epic/lead-table';
 
-import { API, PropsInter } from './constant';
+import { API, PropsInter } from 'src/constant/lead-table';
 
 export default function ScriptCreate({ payload }: PropsInter) {
   const { success, data, message } = payload;
