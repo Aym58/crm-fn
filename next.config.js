@@ -16,11 +16,11 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/_next/:path*',
+        source: 'https://crm-bn.vercel.app/:path*',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'https://crm-bn.vercel.app',
+            value: '*',
           },
         ],
       },
