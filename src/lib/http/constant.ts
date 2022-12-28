@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.API_BASE_URL;
+export const BASE_URL = 'https://crm-bn.vercel.app';
 
 export interface HttpResponse {
   statusCode: number;
