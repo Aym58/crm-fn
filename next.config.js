@@ -13,6 +13,19 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  async headers() {
+    return [
+      {
+        source: '/_next/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://crm-bn.vercel.app',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
