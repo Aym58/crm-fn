@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://crm-bn.vercel.app';
+export const BASE_URL = 'http://localhost:4000';
 
 export interface HttpResponse {
   statusCode: number;

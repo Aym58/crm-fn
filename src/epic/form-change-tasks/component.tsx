@@ -21,12 +21,15 @@ import {
   StatusEnum,
   StatusType,
 } from './constant';
+import { useRouter } from 'next/router';
 
 export const Component = ({ data }: PropsInter) => {
   const [message, setMessage] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [steps, setSteps] = useState<StepsType>(convertDataToUi(data));
+
+  const route = useRouter();
 
   const handleClick = (task: TaskType, status: StatusType | null) => {
     data.task = task;
@@ -57,6 +60,7 @@ export const Component = ({ data }: PropsInter) => {
     setIsLoading(false);
     if (response?.success) {
       setMessage(FormMessages.SUCCESS);
+      route.push('/lead/table');
     } else {
       setIsError(true);
       setMessage(response?.message || FormMessages.ERROR_UNKNOWN);

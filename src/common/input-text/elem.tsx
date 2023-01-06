@@ -73,10 +73,12 @@ const Field = styled(InputBase)<{
     height: 100%;
     padding: ${PaddingSizeData[PaddingSizeEnum.ELEMENT]};
     border: 1px solid ${ColorData[ColorEnum.TEXT]};
+    border-radius: 0;
   }
 
   input:focus {
     border: 2px solid ${ColorData[ColorEnum.TEXT]};
+    border-radius: 0;
   }
 
   ${({
